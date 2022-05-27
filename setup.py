@@ -11,7 +11,7 @@ from setuptools import setup, find_packages
 setup(
     name='Topographic Calculation for Python Library',
     version='0.0.1.dev0',
-    license='MIT',
+    license='gpl-3.0',
     author="Utku Can CANATAN",
     author_email='utkucancanatan@gmail.com',
     packages=find_packages('src'),
