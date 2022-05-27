@@ -26,8 +26,29 @@ def pow2(ver):
     res = math.pow(ver,2)
     return res
 def pointcoordinate(y,x,angle,distance):
+    """
+    
+
+    Parameters
+    ----------
+    y : METER
+        FIRST POINT Y COORDINATE
+    x : METER
+        FIRST POINT X COORDINATE
+    angle : GRAD
+        ANGLE BETWEEN TWO POINTS
+    distance : TYPE
+        DISTANCE BETWEEN TWO POINTS
+
+    Returns
+    -------
+    coordinate : TYPE
+        [1] = y
+        [2] = x
+
+    """
     ny = y+distance*math.sin(grad2rad(angle))
-    print(grad2rad(angle))
+    #print(grad2rad(angle))
     nx = x+distance*math.cos(grad2rad(angle))
     coordinate = []
     coordinate.append(ny)
@@ -46,37 +67,57 @@ def gradangle(dy,dx):
             ngrad = math.atan(grad2rad(dy/dx))+200
     return ngrad
 def nextangle(angle,beta,angletype = None):
-        pi = math.pi
-        nangle = angle+beta
-        if angletype == None:
-            angletype = "grad"
-        if angletype == "grad":
-            if 0 <= nangle<200:
-                nangle = nangle+200
-            elif 200<=nangle<400:
-                nangle = nangle-200
-            elif 400<=nangle<600:
-                nangle = nangle-200
-            elif 600<=nangle<800:
-                nangle = nangle-600
-        elif angletype == "deg":
-            if 0 <= nangle<180:
-                nangle = nangle+180
-            elif 180<=nangle<360:
-                nangle = nangle-180
-            elif 360<=nangle<540:
-                nangle = nangle-180
-            elif 540<=nangle<720:
-                nangle = nangle-540
-        elif angletype == "rad":
-            if  0<= nangle<pi:
-                nangle = nangle+pi
-            elif pi<=nangle<2*pi:
-                nangle = nangle-pi
-            elif 2*pi<=nangle<3*pi:
-                nangle = nangle-pi
-            elif 3*pi<=nangle<4*pi:
-                nangle = nangle-3*pi
-        return nangle
+    """
+    
+
+    Parameters
+    ----------
+    angle : TYPE
+        DESCRIPTION.
+    beta : TYPE
+        DESCRIPTION.
+    angletype : TYPE, optional
+        grad, deg, rad. The default is grad.
+
+    Returns
+    -------
+    nangle : TYPE
+        DESCRIPTION.
+
+    """
+    pi = math.pi
+    nangle = angle+beta
+    if angletype == None:
+        angletype = "grad"
+    if angletype == "grad":
+        if 0 <= nangle<200:
+            nangle = nangle+200
+        elif 200<=nangle<400:
+            nangle = nangle-200
+        elif 400<=nangle<600:
+            nangle = nangle-200
+        elif 600<=nangle<800:
+            nangle = nangle-600
+    elif angletype == "deg":
+        if 0 <= nangle<180:
+            nangle = nangle+180
+        elif 180<=nangle<360:
+            nangle = nangle-180
+        elif 360<=nangle<540:
+            nangle = nangle-180
+        elif 540<=nangle<720:
+            nangle = nangle-540
+    elif angletype == "rad":
+        if  0<= nangle<pi:
+            nangle = nangle+pi
+        elif pi<=nangle<2*pi:
+            nangle = nangle-pi
+        elif 2*pi<=nangle<3*pi:
+            nangle = nangle-pi
+        elif 3*pi<=nangle<4*pi:
+            nangle = nangle-3*pi
+    else:
+        print("Worng Angle Type")
+    return nangle
 
     
