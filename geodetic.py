@@ -32,31 +32,38 @@ class Bassel:
         None
 
         """
-        na = a[1]
-        nb = b[1]
-        nc = c[1]
-        nf1 = f1[1]
-        ne = e[1]
-        ne2 = e2[1]
-        nn = n[1]
-        nalfa = alfa[1]
-        nbeta = beta[1]
-        nfi = fi[1]
-        ngama = gama[1]
-        nel = el[1]
-        nbeta1 = beta1[1]
-        nfi1 = fi1[1]
-        ngama1 = gama1[1]
-        nel1 = el1[1]
-        print("a ="+str(na))
-        print("b ="+str(nb))
-        print("c ="+str(nc))
-        print("1/f ="+str(nf1))
-        print("e ="+str(ne))
-        print("e'^2 ="+str(ne2))
-        print("n ="+str(nn))
-        print("α ="+str(nalfa))
-        print("β ="+str(nbeta))
+        na = a[0]
+        nb = b[0]
+        nc = c[0]
+        nf1 = f1[0]
+        ne = e[0]
+        ne2 = e2[0]
+        nn = n[0]
+        nalfa = alfa[0]
+        nbeta = beta[0]
+        nfi = fi[0]
+        ngama = gama[0]
+        nel = el[0]
+        nbeta1 = beta1[0]
+        nfi1 = fi1[0]
+        ngama1 = gama1[0]
+        nel1 = el1[0]
+        print("a = "+str(na))
+        print("b = "+str(nb))
+        print("c = "+str(nc))
+        print("1/f = "+str(nf1))
+        print("e = "+str(ne))
+        print("e'^2 = "+str(ne2))
+        print("n = "+str(nn))
+        print("α = "+str(nalfa))
+        print("β = "+str(nbeta))
+        print("γ = "+str(nfi))
+        print("δ = "+str(ngama))
+        print("ε = "+str(nel))
+        print("β`- = "+str(nbeta1))
+        print("γ`- = "+str(nfi1))
+        print("δ`- = "+str(ngama1))
+        print("ε`- = "+str(nel1))
     def Ncalc(phi):
         """
         
@@ -72,8 +79,8 @@ class Bassel:
             DESCRIPTION.
 
         """
-        ne2 = e2[1]
-        nc = c[1]
+        ne2 = e2[0]
+        nc = c[0]
         v = math.sqrt(1+ne2*math.cos(core.deg2rad(phi)))
         N = nc/v
         return N
@@ -99,7 +106,7 @@ class Bassel:
             [3] z
 
         """
-        ne2 = e2[1]
+        ne2 = e2[0]
         x = (Bassel.Ncalc(phi)+h)*math.cos(core.deg2rad(phi))*math.cos(core.deg2rad(lamda))
         y = (Bassel.Ncalc(phi)+h)*math.cos(core.deg2rad(phi))*math.sin(core.deg2rad(lamda))
         z = ((Bassel.Ncalc(phi)/(1+ne2))+h)*math.sin(core.deg2rad(phi))
@@ -114,20 +121,37 @@ class Bassel:
     
 class Hayford:
     def printdata():
-        na = a[2]
-        nb = b[2]
-        nc = c[2]
-        nf1 = f1[2]
-        ne = e[2]
-        ne2 = e2[2]
-        nn = n[2]
-        print("a"+str(na))
-        print("b"+str(nb))
-        print("c"+str(nc))
-        print("1/f"+str(nf1))
-        print("e"+str(ne))
-        print("e'^2"+str(ne2))
-        print("n"+str(nn))
+        na = a[1]
+        nb = b[1]
+        nc = c[1]
+        nf1 = f1[1]
+        ne = e[1]
+        ne2 = e2[1]
+        nn = n[1]
+        nalfa = alfa[1]
+        nbeta = beta[1]
+        nfi = fi[1]
+        ngama = gama[1]
+        nel = el[1]
+        nbeta1 = beta1[1]
+        nfi1 = fi1[1]
+        ngama1 = gama1[1]
+        nel1 = el1[1]
+        print("a = "+str(na))
+        print("b = "+str(nb))
+        print("c = "+str(nc))
+        print("1/f = "+str(nf1))
+        print("e = "+str(ne))
+        print("e'^2 = "+str(ne2))
+        print("n = "+str(nn))
+        print("α = "+str(nalfa))
+        print("β = "+str(nbeta))
+        print("γ = "+str(nfi))
+        print("δ = "+str(ngama))
+        print("ε = "+str(nel))
+        print("β`- = "+str(nbeta1))
+        print("γ`- = "+str(nfi1))
+        print("δ`- = "+str(ngama1))
     def Ncalc(phi):
         ne2 = e2[2]
         nc = c[2]
@@ -169,20 +193,37 @@ class Hayford:
     
 class RS80:
     def printdata():
-        na = a[3]
-        nb = b[3]
-        nc = c[3]
-        nf1 = f1[3]
-        ne = e[3]
-        ne2 = e2[3]
-        nn = n[3]
-        print("a"+str(na))
-        print("b"+str(nb))
-        print("c"+str(nc))
-        print("1/f"+str(nf1))
-        print("e"+str(ne))
-        print("e'^2"+str(ne2))
-        print("n"+str(nn))
+        na = a[2]
+        nb = b[2]
+        nc = c[2]
+        nf1 = f1[2]
+        ne = e[2]
+        ne2 = e2[2]
+        nn = n[2]
+        nalfa = alfa[2]
+        nbeta = beta[2]
+        nfi = fi[2]
+        ngama = gama[2]
+        nel = el[2]
+        nbeta1 = beta1[2]
+        nfi1 = fi1[2]
+        ngama1 = gama1[2]
+        nel1 = el1[2]
+        print("a = "+str(na))
+        print("b = "+str(nb))
+        print("c = "+str(nc))
+        print("1/f = "+str(nf1))
+        print("e = "+str(ne))
+        print("e'^2 = "+str(ne2))
+        print("n = "+str(nn))
+        print("α = "+str(nalfa))
+        print("β = "+str(nbeta))
+        print("γ = "+str(nfi))
+        print("δ = "+str(ngama))
+        print("ε = "+str(nel))
+        print("β`- = "+str(nbeta1))
+        print("γ`- = "+str(nfi1))
+        print("δ`- = "+str(ngama1))
     def Ncalc(phi):
         ne2 = e2[3]
         nc = c[3]
@@ -222,3 +263,4 @@ class RS80:
     def __init__(self):
         return self
     
+RS80.printdata()
