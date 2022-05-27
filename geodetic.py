@@ -5,7 +5,7 @@ Created on Fri May 27 02:10:52 2022
 @author: UCC
 """
 import math
-import core
+from . import core
 a=[6377397.155,6378388.000,6378137.000]
 b=[6356078.963,6356911.946,6356752.314]
 c=[6398786.849,6399936.608,6399593.626]
@@ -116,6 +116,95 @@ class Bassel:
         GOC.append(z)
         
         return GOC
+    def MeridianLeg(phi):
+        """
+        
+
+        Parameters
+        ----------
+        phi : TYPE DEGREE
+            DESCRIPTION.
+
+        Returns
+        -------
+        G : TYPE METER
+            MERIDIAN ARC LENGTH
+
+        """
+        nalfa = alfa[0]
+        nbeta = beta[0]
+        nfi = fi[0]
+        ngama = gama[0]
+        nel = el[0]
+        G =nalfa-(nbeta*math.sin(2*core.deg2rad(phi)))+(nfi*math.sin(4*core.deg2rad(phi)))-(ngama*math.sin(6*core.deg2rad(phi)))+(nel*math.sin(8*core.deg2rad(phi)))
+        return G
+    def Curvature(A):
+        """
+        
+
+        Parameters
+        ----------
+        A : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        k : TYPE
+            DESCRIPTION.
+
+        """
+        ne2 = e2[0]
+        n = ne2*core.pow2(math.cos(core.deg2rad(A)))
+        cs = core.pow2(math.cos(core.deg2rad(A)))
+        p = 1+(n*cs)
+        k = p/Bassel.Ncalc(A)
+        return k
+    def LGS(phi1,phi2,lamda1,lamda2,h1,h2):
+        """
+        
+
+        Parameters
+        ----------
+        phi1 : TYPE
+            DESCRIPTION.
+        phi2 : TYPE
+            DESCRIPTION.
+        lamda1 : TYPE
+            DESCRIPTION.
+        lamda2 : TYPE
+            DESCRIPTION.
+        h1 : TYPE
+            DESCRIPTION.
+        h2 : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        coordinate: TYPE list
+            DESCRIPTION.
+
+        """
+        coordinate = []
+        ne2 = e2[0]
+        def sin(x):
+            rs = math.sin(core.deg2rad(x))
+            return rs
+        def cos(x):
+            rs = math.cos(core.deg2rad(x))
+            return rs
+        def N(x):
+            rs = Bassel.Ncalc(x)
+            return rs
+        x = (-1)*sin(phi1)*(N(phi2)*cos(phi2)*cos(lamda2-lamda1)-N(phi1)*cos(phi1))+(cos(phi1)/(1+ne2))*(N(phi2)*sin(phi2)-N(phi1)*sin(phi1))
+        y = N(phi2)*cos(phi2)*sin(lamda2-lamda1)
+        z = cos(phi1)(N(phi2)*cos(phi2)*cos(lamda2-lamda1)-N(phi1)*cos(phi1))+((sin(phi1)/(1+ne2))*N(phi2*sin(phi2)-N(phi1)*sin(phi1)))
+        x1 = x*(1+(h2/N(phi2)))+ne2*cos(phi1)*(h2/N(phi2)*(x*cos(phi1)+z*sin(phi1)))
+        y1 = y*(1+(h2/N(phi2)))
+        z1 = z*(1+(h2/N(phi2)))+N(phi1)*((h2/N(phi2))-(h1/N(phi1)))+ne2*sin(phi1)*(h2/N(phi2))*(x*cos(phi1)+z*sin(phi1))
+        coordinate.append(x1)
+        coordinate.append(y1)
+        coordinate.append(z1)
+        return coordinate
     def __init__(self):
         return self
     
@@ -152,6 +241,7 @@ class Hayford:
         print("β`- = "+str(nbeta1))
         print("γ`- = "+str(nfi1))
         print("δ`- = "+str(ngama1))
+        print("ε`- = "+str(nel1))
     def Ncalc(phi):
         ne2 = e2[2]
         nc = c[2]
@@ -224,6 +314,7 @@ class RS80:
         print("β`- = "+str(nbeta1))
         print("γ`- = "+str(nfi1))
         print("δ`- = "+str(ngama1))
+        print("ε`- = "+str(nel1))
     def Ncalc(phi):
         ne2 = e2[3]
         nc = c[3]
