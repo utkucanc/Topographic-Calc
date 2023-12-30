@@ -156,6 +156,25 @@ class basicalc:
                 ngrad = math.atan(core.grad2rad(dy/dx))+200
         return ngrad
     def degangle(x1,x2,y1,y2):
+        """
+        Parameters
+        ----------
+        x1 : METER
+            FIRST POINT X COORDINATE
+        x2 : METER
+            SECOND POINT X COORDINATE
+        y1 : METER
+            FIRST POINT Y COORDINATE
+        y2 : METER
+            SECOND POINT Y COORDINATE
+
+        Returns
+        -------
+        ngrad : DEGRE
+            DESCRIPTION.
+        
+        
+        """
         dy = y2-y1
         dx = x2-x1
         if dy > 0:
@@ -170,6 +189,25 @@ class basicalc:
                 ngrad = math.atan(core.deg2rad(dy/dx))+180
         return ngrad
     def radangle(x1,x2,y1,y2):
+        """
+        Parameters
+        ----------
+        x1 : METER
+            FIRST POINT X COORDINATE
+        x2 : METER
+            SECOND POINT X COORDINATE
+        y1 : METER
+            FIRST POINT Y COORDINATE
+        y2 : METER
+            SECOND POINT Y COORDINATE
+
+        Returns
+        -------
+        ngrad : RADIAN
+            DESCRIPTION.
+        
+        
+        """
         dy = y2-y1
         dx = x2-x1
         if dy > 0:
