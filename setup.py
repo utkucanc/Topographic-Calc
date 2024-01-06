@@ -18,8 +18,12 @@ setup(
     package_dir={'': 'src'},
     url='https://github.com/utkucanc/Topographic-Calc',
     keywords='TCPL',
+    classifiers=[
+        'Programming Language :: Python :: 3',
+        'License :: OSI Approved :: MIT License',
+        'Operating System :: OS Independent',],
     install_requires=[
-          'math',
+          'math','numpy',
       ],
-
+    python_requires='>=3.6',
 )

@@ -1,0 +1,15 @@
+Metadata-Version: 2.1
+Name: Topographic-Calculation-for-Python-Library
+Version: 0.0.1.dev0
+Home-page: https://github.com/utkucanc/Topographic-Calc
+Author: Utku Can CANATAN
+Author-email: utkucancanatan@gmail.com
+License: gpl-3.0
+Keywords: TCPL
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.6
+License-File: LICENSE.txt
+Requires-Dist: math
+Requires-Dist: numpy

@@ -5,7 +5,7 @@ Created on Fri May 27 02:10:52 2022
 @author: UCC
 """
 import math
-from . import core
+from core import *
 a=[6377397.155,6378388.000,6378137.000]
 b=[6356078.963,6356911.946,6356752.314]
 c=[6398786.849,6399936.608,6399593.626]
@@ -23,6 +23,11 @@ fi1 = [0.000003678786,0.000003732401,0.000003700949]
 gama1 = [0.000000007381,0.000000007543,0.000000007448]
 el1 = [0.000000000017,0.000000000017,0.000000000017]
 class Bassel:
+    def __init__(self):
+        """
+        Author : Utku Can CANATAN
+        """
+        return self
     def printdata():
         """
         ALL GEODESIC DATA PRINT
@@ -205,11 +210,23 @@ class Bassel:
         coordinate.append(y1)
         coordinate.append(z1)
         return coordinate
-    def __init__(self):
-        return self
+    
     
 class Hayford:
+    def __init__(self):
+        """
+        Author : Utku Can CANATAN
+        """
+        return self
     def printdata():
+        """
+        ALL GEODESIC DATA PRINT
+
+        Returns
+        -------
+        None.
+
+        """
         na = a[1]
         nb = b[1]
         nc = c[1]
@@ -243,8 +260,8 @@ class Hayford:
         print("δ`- = "+str(ngama1))
         print("ε`- = "+str(nel1))
     def Ncalc(phi):
-        ne2 = e2[2]
-        nc = c[2]
+        ne2 = e2[1]
+        nc = c[1]
         v = math.sqrt(1+ne2*math.cos(core.deg2rad(phi)))
         N = nc/v
         return N
@@ -269,7 +286,7 @@ class Hayford:
             [2] y
             [3] z
             """
-        ne2 = e2[2]
+        ne2 = e2[1]
         x = (Hayford.Ncalc(phi)+h)*math.cos(core.deg2rad(phi))*math.cos(core.deg2rad(lamda))
         y = (Hayford.Ncalc(phi)+h)*math.cos(core.deg2rad(phi))*math.sin(core.deg2rad(lamda))
         z = ((Hayford.Ncalc(phi)/(1+ne2))+h)*math.sin(core.deg2rad(phi))
@@ -278,11 +295,111 @@ class Hayford:
         GOC.append(y)
         GOC.append(z)
         return GOC
-    def __init__(self):
-        return self
+    def MeridianLeg(phi):
+        """
+        
+
+        Parameters
+        ----------
+        phi : TYPE DEGREE
+            DESCRIPTION.
+
+        Returns
+        -------
+        G : TYPE METER
+            MERIDIAN ARC LENGTH
+
+        """
+        nalfa = alfa[1]
+        nbeta = beta[1]
+        nfi = fi[1]
+        ngama = gama[1]
+        nel = el[1]
+        G =nalfa-(nbeta*math.sin(2*core.deg2rad(phi)))+(nfi*math.sin(4*core.deg2rad(phi)))-(ngama*math.sin(6*core.deg2rad(phi)))+(nel*math.sin(8*core.deg2rad(phi)))
+        return G
+    def Curvature(A):
+        """
+        
+
+        Parameters
+        ----------
+        A : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        k : TYPE
+            DESCRIPTION.
+
+        """
+        ne2 = e2[1]
+        n = ne2*core.pow2(math.cos(core.deg2rad(A)))
+        cs = core.pow2(math.cos(core.deg2rad(A)))
+        p = 1+(n*cs)
+        k = p/Bassel.Ncalc(A)
+        return k
+    def LGS(phi1,phi2,lamda1,lamda2,h1,h2):
+        """
+        
+
+        Parameters
+        ----------
+        phi1 : TYPE
+            DESCRIPTION.
+        phi2 : TYPE
+            DESCRIPTION.
+        lamda1 : TYPE
+            DESCRIPTION.
+        lamda2 : TYPE
+            DESCRIPTION.
+        h1 : TYPE
+            DESCRIPTION.
+        h2 : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        coordinate: TYPE list
+            DESCRIPTION.
+
+        """
+        coordinate = []
+        ne2 = e2[1]
+        def sin(x):
+            rs = math.sin(core.deg2rad(x))
+            return rs
+        def cos(x):
+            rs = math.cos(core.deg2rad(x))
+            return rs
+        def N(x):
+            rs = Bassel.Ncalc(x)
+            return rs
+        x = (-1)*sin(phi1)*(N(phi2)*cos(phi2)*cos(lamda2-lamda1)-N(phi1)*cos(phi1))+(cos(phi1)/(1+ne2))*(N(phi2)*sin(phi2)-N(phi1)*sin(phi1))
+        y = N(phi2)*cos(phi2)*sin(lamda2-lamda1)
+        z = cos(phi1)(N(phi2)*cos(phi2)*cos(lamda2-lamda1)-N(phi1)*cos(phi1))+((sin(phi1)/(1+ne2))*N(phi2*sin(phi2)-N(phi1)*sin(phi1)))
+        x1 = x*(1+(h2/N(phi2)))+ne2*cos(phi1)*(h2/N(phi2)*(x*cos(phi1)+z*sin(phi1)))
+        y1 = y*(1+(h2/N(phi2)))
+        z1 = z*(1+(h2/N(phi2)))+N(phi1)*((h2/N(phi2))-(h1/N(phi1)))+ne2*sin(phi1)*(h2/N(phi2))*(x*cos(phi1)+z*sin(phi1))
+        coordinate.append(x1)
+        coordinate.append(y1)
+        coordinate.append(z1)
+        return coordinate
     
 class RS80:
+    def __init__(self):
+        """
+        Author : Utku Can CANATAN
+        """
+        return self
     def printdata():
+        """
+        ALL GEODESIC DATA PRINT
+
+        Returns
+        -------
+        None.
+
+        """
         na = a[2]
         nb = b[2]
         nc = c[2]
@@ -316,8 +433,8 @@ class RS80:
         print("δ`- = "+str(ngama1))
         print("ε`- = "+str(nel1))
     def Ncalc(phi):
-        ne2 = e2[3]
-        nc = c[3]
+        ne2 = e2[2]
+        nc = c[2]
         v = math.sqrt(1+ne2*math.cos(core.deg2rad(phi)))
         N = nc/v
         return N
@@ -342,7 +459,7 @@ class RS80:
         [2]: y
         [3]: z
             """
-        ne2 = e2[3]
+        ne2 = e2[2]
         x = (RS80.Ncalc(phi)+h)*math.cos(core.deg2rad(phi))*math.cos(core.deg2rad(lamda))
         y = (RS80.Ncalc(phi)+h)*math.cos(core.deg2rad(phi))*math.sin(core.deg2rad(lamda))
         z = ((RS80.Ncalc(phi)/(1+ne2))+h)*math.sin(core.deg2rad(phi))
@@ -351,7 +468,93 @@ class RS80:
         GOC.append(y)
         GOC.append(z)
         return GOC
-    def __init__(self):
-        return self
-    
-RS80.printdata()
+    def MeridianLeg(phi):
+        """
+        
+
+        Parameters
+        ----------
+        phi : TYPE DEGREE
+            DESCRIPTION.
+
+        Returns
+        -------
+        G : TYPE METER
+            MERIDIAN ARC LENGTH
+
+        """
+        nalfa = alfa[2]
+        nbeta = beta[2]
+        nfi = fi[2]
+        ngama = gama[2]
+        nel = el[2]
+        G =nalfa-(nbeta*math.sin(2*core.deg2rad(phi)))+(nfi*math.sin(4*core.deg2rad(phi)))-(ngama*math.sin(6*core.deg2rad(phi)))+(nel*math.sin(8*core.deg2rad(phi)))
+        return G
+    def Curvature(A):
+        """
+        
+
+        Parameters
+        ----------
+        A : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        k : TYPE
+            DESCRIPTION.
+
+        """
+        ne2 = e2[2]
+        n = ne2*core.pow2(math.cos(core.deg2rad(A)))
+        cs = core.pow2(math.cos(core.deg2rad(A)))
+        p = 1+(n*cs)
+        k = p/Bassel.Ncalc(A)
+        return k
+    def LGS(phi1,phi2,lamda1,lamda2,h1,h2):
+        """
+        
+
+        Parameters
+        ----------
+        phi1 : TYPE
+            DESCRIPTION.
+        phi2 : TYPE
+            DESCRIPTION.
+        lamda1 : TYPE
+            DESCRIPTION.
+        lamda2 : TYPE
+            DESCRIPTION.
+        h1 : TYPE
+            DESCRIPTION.
+        h2 : TYPE
+            DESCRIPTION.
+
+        Returns
+        -------
+        coordinate: TYPE list
+            DESCRIPTION.
+
+        """
+        coordinate = []
+        ne2 = e2[2]
+        def sin(x):
+            rs = math.sin(core.deg2rad(x))
+            return rs
+        def cos(x):
+            rs = math.cos(core.deg2rad(x))
+            return rs
+        def N(x):
+            rs = Bassel.Ncalc(x)
+            return rs
+        x = (-1)*sin(phi1)*(N(phi2)*cos(phi2)*cos(lamda2-lamda1)-N(phi1)*cos(phi1))+(cos(phi1)/(1+ne2))*(N(phi2)*sin(phi2)-N(phi1)*sin(phi1))
+        y = N(phi2)*cos(phi2)*sin(lamda2-lamda1)
+        z = cos(phi1)(N(phi2)*cos(phi2)*cos(lamda2-lamda1)-N(phi1)*cos(phi1))+((sin(phi1)/(1+ne2))*N(phi2*sin(phi2)-N(phi1)*sin(phi1)))
+        x1 = x*(1+(h2/N(phi2)))+ne2*cos(phi1)*(h2/N(phi2)*(x*cos(phi1)+z*sin(phi1)))
+        y1 = y*(1+(h2/N(phi2)))
+        z1 = z*(1+(h2/N(phi2)))+N(phi1)*((h2/N(phi2))-(h1/N(phi1)))+ne2*sin(phi1)*(h2/N(phi2))*(x*cos(phi1)+z*sin(phi1))
+        coordinate.append(x1)
+        coordinate.append(y1)
+        coordinate.append(z1)
+        return coordinate
+Hayford.printdata()
