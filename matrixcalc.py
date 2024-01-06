@@ -6,23 +6,66 @@ Created on Sat Dec 30 21:46:49 2023
 """
 
 import math
-from . import core
+from core import *
 import numpy as np
 
 class basic():
     def __init__(self):
         return self
+    #Matrix Transpose 
     def MainTranspose(matris):
+        if type(matris) != np.ndarray():
+            if type(matris) == list:
+                matris = np.array(matris)
+            else:
+                print("You must be use Numpy array or Python List. Error:")
+                print(matris)
         result = [[j for j in i] for i in zip(*matris)]
         return result
     def SideTranspose(matris):
+        if type(matris) != np.ndarray():
+            if type(matris) == list:
+                matris = np.array(matris)
+            else:
+                print("You must be use Numpy array or Python List. Error:")
+                print(matris)
         result = [[j for j in i] for i in zip(*matris[::-1])][::-1]
         return result
     def VerticalTranspose(matris):
+        if type(matris) != np.ndarray():
+            if type(matris) == list:
+                matris = np.array(matris)
+            else:
+                print("You must be use Numpy array or Python List. Error:")
+                print(matris)
         result = [i[::-1] for i in matris]
         return result
     def HorizonalTranspose(matris):
+        if type(matris) != np.ndarray():
+            if type(matris) == list:
+                matris = np.array(matris)
+            else:
+                print("You must be use Numpy array or Python List. Error:")
+                print(matris)
         result = matris[::-1]
+        return result
+    #Matrix Basic Calc
+    def MatrixDot(matris1,matris2):
+        #Checking tp type
+        if type(matris1) != np.ndarray():
+            if type(matris1) == list:
+                matris1 = np.array(matris1)
+            else:
+                print("You must be use Numpy array or Python List. Error:")
+                print(matris1)
+        if type(matris2) != np.ndarray():
+            if type(matris2) == list:
+                matris1 = np.array(matris2)
+            else:
+                print("You must be use Numpy array or Python List. Error:")
+                print(matris2)        
+            
+        result = np.dot(matris1,matris2)
         return result
     def CreatPMatrix(row,distance = 1):
         """
@@ -46,8 +89,8 @@ class basic():
         for i in range(row):
             matris[i][i] = 1/distance
             i = i+1
-        result = 0
-        return result
+        
+        return matris
     def GetMatrixFromFile(file):
         """
         
@@ -94,6 +137,18 @@ class basic():
             DESCRIPTION.
 
         """
+        if type(matris1) != np.ndarray():
+            if type(matris1) == list:
+                matris1 = np.array(matris1)
+            else:
+                print("You must be use Numpy array or Python List. Error:")
+                print(matris1)
+        if type(matris2) != np.ndarray():
+            if type(matris2) == list:
+                matris1 = np.array(matris2)
+            else:
+                print("You must be use Numpy array or Python List. Error:")
+                print(matris2)   
         sh1 = np.array(matris1).shape
         sh2 = np.array(matris2).shape
         row = sh1[0]
@@ -123,6 +178,18 @@ class basic():
             DESCRIPTION.
 
         """
+        if type(matris1) != np.ndarray():
+            if type(matris1) == list:
+                matris1 = np.array(matris1)
+            else:
+                print("You must be use Numpy array or Python List. Error:")
+                print(matris1)
+        if type(matris2) != np.ndarray():
+            if type(matris2) == list:
+                matris1 = np.array(matris2)
+            else:
+                print("You must be use Numpy array or Python List. Error:")
+                print(matris2)   
         sh1 = np.array(matris1).shape
         sh2 = np.array(matris2).shape
         row = sh1[0]
@@ -135,6 +202,68 @@ class basic():
             
         
         return result
+    def getCofactor(A, temp, p, q, n):
+ 
+        i = 0
+        j = 0
+     
+        # Looping for each element of the matrix
+        for row in range(n):
+     
+            for col in range(n):
+     
+                # Copying into temporary matrix only those element
+                # which are not in given row and column
+                if (row != p and col != q):
+     
+                    temp[i][j] = A[row][col]
+                    j += 1
+     
+                    # Row is filled, so increase row index and
+                    # reset col index
+                    if (j == n - 1):
+                        j = 0
+                        i += 1
+    
+    # def MatrixDeterminant(A, n):
+ 
+    #     temp1 = 0
+         
+    #     # Base case : if matrix contains single element
+    #     if (n == 1):
+    #         return A[0][0]
+         
+    #     temp = []   # To store cofactors
+    #     for i in range(n):
+    #         temp.append([None for _ in range(n)])
+         
+    #     sign = 1   # To store sign multiplier
+         
+    #     # Iterate for each element of first row
+    #     for f in range(n):
+         
+    #         # Getting Cofactor of A[0][f]
+    #         basic.getCofactor(A, temp, 0, f, n)
+    #         temp1 += sign * A[0][f] * MatrixDeterminant(temp, n - 1)
+         
+    #         # terms are to be added with alternate sign
+    #         sign = -sign
+         
+    #     return temp1
+    # """
+    # toplama
+    # çıkarma
+    # çarpma
+    # tersi
+    # determinant
+    # tersi
+    # üstü
+    # """
 class multi():
     def __init__(self):
+    
         return self
+
+
+# test = basic.CreatPMatrix(5,1544.256)
+# print(test)

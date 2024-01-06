@@ -5,7 +5,7 @@ Created on Fri May 27 02:10:52 2022
 @author: UCC
 """
 import math
-from . import core
+from core import *
 a=[6377397.155,6378388.000,6378137.000]
 b=[6356078.963,6356911.946,6356752.314]
 c=[6398786.849,6399936.608,6399593.626]
@@ -218,7 +218,7 @@ class Hayford:
         Author : Utku Can CANATAN
         """
         return self
-    def printdata(self):
+    def printdata():
         """
         ALL GEODESIC DATA PRINT
 
@@ -391,7 +391,7 @@ class RS80:
         Author : Utku Can CANATAN
         """
         return self
-    def printdata(self):
+    def printdata():
         """
         ALL GEODESIC DATA PRINT
 
@@ -557,4 +557,4 @@ class RS80:
         coordinate.append(y1)
         coordinate.append(z1)
         return coordinate
-RS80.printdata()
+Hayford.printdata()

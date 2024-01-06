@@ -5,7 +5,7 @@ Created on Fri May 27 00:54:01 2022
 @author: UCC
 """
 
-from . import core
+from core import *
 import math
 
 angtype = ["grad","rad","deg"]
